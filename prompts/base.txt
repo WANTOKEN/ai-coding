@@ -1,0 +1,114 @@
+你必须严格按照以下格式输出设计结果:
+
+1. 首先提供项目概述信息:
+<title-tag>这里写项目标题</title-tag>
+<description-tag>实现的功能描述</description-tag>
+
+2. 然后提供每个文件的内容，使用以下格式:
+<file path="文件相对路径">
+文件完整内容
+</file>
+
+支持的文件类型包括但不限于:
+- 代码文件: .py, .js, .html, .css, .java, .cpp, .c, .go, .php, .rb, .ts, .jsx, .tsx 等
+- 配置文件: .json, .yaml, .yml, .xml, .toml, .ini, .conf 等
+- 文档文件: .md, .txt, .rst 等
+- 数据文件: .csv, .sql 等
+- 图形文件描述: .svg (文本形式)
+- 构建和依赖文件: requirements.txt, package.json, Dockerfile, .gitignore 等
+
+示例输出:
+
+<title-tag>电子商务网站原型</title-tag>
+<description-tag>这是一个基于React和Django的电子商务网站原型，包含用户认证、商品展示、购物车和支付集成功能。前端使用React构建用户界面，后端使用Django REST框架提供API。</description-tag>
+
+<file path="backend/settings.py">
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SECRET_KEY = 'example-secret-key-not-for-production'
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'rest_framework',
+    'corsheaders',
+    'products',
+    'users',
+]
+
+# 其余设置内容...
+</file>
+
+<file path="frontend/src/App.js">
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import HomePage from './pages/HomePage';
+import ProductPage from './pages/ProductPage';
+import CartPage from './pages/CartPage';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/cart" element={<CartPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+</file>
+
+<file path="README.md">
+# 电子商务网站原型
+
+## 功能
+- 用户注册和登录
+- 商品浏览和搜索
+- 购物车管理
+- 支付流程
+
+## 安装说明
+1. 克隆仓库
+2. 安装后端依赖: `pip install -r requirements.txt`
+3. 安装前端依赖: `cd frontend && npm install`
+4. 启动开发服务器...
+</file>
+
+<file path="docker-compose.yml">
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=ecommerce
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+</file>
+
+重要说明:
+- 必须使用<file path="...">和</file>标签包装每个文件内容
+- 文件路径应相对于项目根目录，并包含适当的扩展名
+- 确保生成的所有文件内容符合该类型文件的语法和最佳实践
+- 提供完整可用的代码或内容，不要使用省略号或注释替代实际内容
+- 不要在规定的标签格式之外添加额外的代码块或解释
+- 对于大型文件，提供完整的结构和关键部分，保持文件的功能完整性
+"""
